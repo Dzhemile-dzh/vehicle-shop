@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\TrailerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TrailerRepository::class)]
 class Trailer
@@ -14,18 +16,43 @@ class Trailer
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Brand cannot be empty.")]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Model cannot be empty.")]
     private ?string $model = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Load capacity cannot be empty.")]
+    #[Assert\Type(
+        type: 'integer',
+        message: "Load capacity must be an integer."
+    )]
     private ?int $load_kapacity_kg = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Number of axles cannot be empty.")]
+    #[Assert\Choice(
+        choices: [1, 2, 3],
+        message: "Number of axles must be 1, 2, or 3."
+    )]
     private ?int $axles_number = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Assert\NotBlank(message: "Price cannot be empty.")]
+    #[Assert\Type(
+        type: 'numeric',
+        message: "Price must be a number."
+    )]
+    private ?string $price = null;
+
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Quantity cannot be empty.")]
+    #[Assert\Type(
+        type: 'integer',
+        message: "Quantity must be an integer."
+    )]
     private ?int $quantity = null;
 
     public function getId(): ?int
@@ -77,6 +104,18 @@ class Trailer
     public function setAxlesNumber(int $axles_number): static
     {
         $this->axles_number = $axles_number;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

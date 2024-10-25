@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MotorcycleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MotorcycleRepository::class)]
 class Motorcycle
@@ -15,22 +16,42 @@ class Motorcycle
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Brand cannot be empty.")]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Model cannot be empty.")]
     private ?string $model = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Assert\NotBlank(message: "Engine capacity cannot be empty.")]
+    #[Assert\Type(
+        type: 'numeric',
+        message: "Engine capacity must be a number."
+    )]
     private ?string $engineCapacity = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Colour cannot be empty.")]
     private ?string $colour = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Assert\NotBlank(message: "Price cannot be empty.")]
+    #[Assert\Type(
+        type: 'numeric',
+        message: "Price must be a number."
+    )]
     private ?string $price = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Quantity cannot be empty.")]
+    #[Assert\Type(
+        type: 'integer',
+        message: "Quantity must be an integer."
+    )]
     private ?int $quantity = null;
+
+    // Getters and setters ...
 
     public function getId(): ?int
     {
