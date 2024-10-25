@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Trailer List</h1>
+    <ul>
+        {% for trailer in trailers %}
+            <li>
+                <a href="{{ path('trailer_details', { id: trailer.id }) }}">
+                    {{ trailer.brand }} - {{ trailer.model }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

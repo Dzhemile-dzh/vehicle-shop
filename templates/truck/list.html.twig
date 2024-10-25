@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Truck List</h1>
+    <ul>
+        {% for truck in trucks %}
+            <li>
+                <a href="{{ path('truck_details', { id: truck.id }) }}">
+                    {{ truck.brand }} - {{ truck.model }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

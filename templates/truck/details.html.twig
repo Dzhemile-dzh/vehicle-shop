@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ truck.brand }} - {{ truck.model }}</h1>
+    <p><strong>Engine Capacity:</strong> {{ truck.engineCapacity }} L</p>
+    <p><strong>Colour:</strong> {{ truck.colour }}</p>
+    <p><strong>Number of Beds:</strong> {{ truck.bedNumbers }}</p>
+    <p><strong>Price:</strong> ${{ truck.price }}</p>
+    <p><strong>Quantity:</strong> {{ truck.quantity }}</p>
+
+{% endblock %}

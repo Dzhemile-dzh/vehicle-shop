@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ trailer.brand }} - {{ trailer.model }}</h1>
+    <p>Load Capacity Kg: {{ trailer.loadKapacityKg }} KG</p>
+    <p>Axles Number: {{ trailer.axlesNumber }}</p>
+    <p>Price: ${{ trailer.price }}</p>
+    <p>Quantity: {{ trailer.quantity }}</p>
+
+{% endblock %}

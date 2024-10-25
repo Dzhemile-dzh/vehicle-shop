@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Motorcycle List</h1>
+    <ul>
+        {% for motorcycle in motorcycles %}
+            <li>
+                <a href="{{ path('motorcycle_details', { id: motorcycle.id }) }}">
+                    {{ motorcycle.brand }} - {{ motorcycle.model }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
