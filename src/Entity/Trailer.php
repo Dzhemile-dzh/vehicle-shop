@@ -16,42 +16,42 @@ class Trailer
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Brand cannot be empty.")]
+    #[Assert\NotBlank(message: 'Brand cannot be empty.')]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Model cannot be empty.")]
+    #[Assert\NotBlank(message: 'Model cannot be empty.')]
     private ?string $model = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Load capacity cannot be empty.")]
+    #[Assert\NotBlank(message: 'Load capacity cannot be empty.')]
     #[Assert\Type(
         type: 'integer',
-        message: "Load capacity must be an integer."
+        message: 'Load capacity must be an integer.'
     )]
     private ?int $load_kapacity_kg = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Number of axles cannot be empty.")]
+    #[Assert\NotBlank(message: 'Number of axles cannot be empty.')]
     #[Assert\Choice(
         choices: [1, 2, 3],
-        message: "Number of axles must be 1, 2, or 3."
+        message: 'Number of axles must be 1, 2, or 3.'
     )]
     private ?int $axles_number = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    #[Assert\NotBlank(message: "Price cannot be empty.")]
+    #[Assert\NotBlank(message: 'Price cannot be empty.')]
     #[Assert\Type(
         type: 'numeric',
-        message: "Price must be a number."
+        message: 'Price must be a number.'
     )]
     private ?string $price = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Quantity cannot be empty.")]
+    #[Assert\NotBlank(message: 'Quantity cannot be empty.')]
     #[Assert\Type(
         type: 'integer',
-        message: "Quantity must be an integer."
+        message: 'Quantity must be an integer.'
     )]
     private ?int $quantity = null;
 

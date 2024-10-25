@@ -16,46 +16,46 @@ class Truck
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Brand cannot be empty.")]
+    #[Assert\NotBlank(message: 'Brand cannot be empty.')]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Model cannot be empty.")]
+    #[Assert\NotBlank(message: 'Model cannot be empty.')]
     private ?string $model = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    #[Assert\NotBlank(message: "Engine capacity cannot be empty.")]
+    #[Assert\NotBlank(message: 'Engine capacity cannot be empty.')]
     #[Assert\Type(
         type: 'numeric',
-        message: "Engine capacity must be a number."
+        message: 'Engine capacity must be a number.'
     )]
     private ?string $engine_capacity = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Colour cannot be empty.")]
+    #[Assert\NotBlank(message: 'Colour cannot be empty.')]
     private ?string $colour = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Number of beds cannot be empty.")]
+    #[Assert\NotBlank(message: 'Number of beds cannot be empty.')]
     #[Assert\Choice(
         choices: [1, 2],
-        message: "Number of beds must be either 1 or 2."
+        message: 'Number of beds must be either 1 or 2.'
     )]
     private ?int $bed_numbers = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    #[Assert\NotBlank(message: "Price cannot be empty.")]
+    #[Assert\NotBlank(message: 'Price cannot be empty.')]
     #[Assert\Type(
         type: 'numeric',
-        message: "Price must be a number."
+        message: 'Price must be a number.'
     )]
     private ?string $price = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Quantity cannot be empty.")]
+    #[Assert\NotBlank(message: 'Quantity cannot be empty.')]
     #[Assert\Type(
         type: 'integer',
-        message: "Quantity must be an integer."
+        message: 'Quantity must be an integer.'
     )]
     private ?int $quantity = null;
 
