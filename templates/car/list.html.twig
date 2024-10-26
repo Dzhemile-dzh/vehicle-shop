@@ -1,14 +1,56 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Cars: Beam up some parts!{% endblock %}
+
 {% block body %}
-    <h1>Car List</h1>
-    <ul>
-        {% for car in cars %}
-            <li>
-                <a href="{{ path('car_details', { id: car.id }) }}">
-                    {{ car.brand }} - {{ car.model }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+<main class="flex flex-col lg:flex-row">
+
+    <div class="px-12 pt-10 w-full">
+        <h1 class="text-4xl font-semibold mb-8">
+            Cars List
+        </h1>            
+            <a href="{{ path('truck_create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Add New Truck
+            </a>
+        <div class="space-y-5">
+            {% for car in cars %}
+                <div class="bg-[#16202A] rounded-2xl pl-5 py-5 pr-11 flex flex-col min-[1174px]:flex-row min-[1174px]:justify-between">
+                    <div class="flex justify-center min-[1174px]:justify-start">
+                        <div class="ml-5">
+                            <h4 class="text-[22px] pt-1 font-semibold">
+                                <a
+                                    class="hover:text-slate-200"
+                                    href="{{ path('car_details', { id: car.id }) }}"
+                                >
+                                    {{ car.brand }} - {{ car.model }}
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="flex justify-center min-[1174px]:justify-start mt-2 min-[1174px]:mt-0 shrink-0">
+                        <div class="border-r border-white/20 pr-8">
+                            <p class="text-slate-400 text-xs">Engine Capacity</p>
+                            <p class="text-xl">{{ car.engineCapacity }} L</p>
+                        </div>
+
+                        <div class="pl-8 w-[100px]">
+                            <p class="text-slate-400 text-xs">Colour</p>
+                            <p class="text-xl">{{ car.colour }}</p>
+                        </div>
+
+                        <div class="pl-8 w-[200px]">
+                            <p class="text-slate-400 text-xs">Price</p>
+                            <p class="text-xl">${{ car.price }}</p>
+                        </div>
+
+                        <div class="pl-8 w-[100px]">
+                            <p class="text-slate-400 text-xs">Quantity</p>
+                            <p class="text-xl">{{ car.quantity }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
 {% endblock %}
