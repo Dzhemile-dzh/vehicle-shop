@@ -3,30 +3,29 @@
 {% block title %}Log In!{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="login-form bg-light mt-4 p-4">
-            <form method="post" class="row g-3">
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-                <div class="col-12">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" name="username" id="inputUsername" class="form-control" required autofocus>
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-[#00121C] to-[#013954] px-4">
+    <div class="md:flex justify-center space-x-3 mt-5 px-4 lg:px-8">
+        <form method="post" class="space-y-6">
+            <h1 class="text-2xl font-semibold text-center text-white mb-4">Please sign in</h1>
+            {% if error %}
+                <div class="bg-red-600 text-white p-3 rounded-md text-sm">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
                 </div>
-                <div class="col-12">
-                    <label for="inputPassword">Password</label>
-                    <input type="password" name="password" id="inputPassword" class="form-control" required>
-                </div>
-
-                <div class="col-12">
-                    <button class="btn btn-lg btn-primary float-end" type="submit">
-                        Sign in
-                    </button>
-                </div>
-            </form>
-        </div>
+            {% endif %}
+            <div>
+                <label for="inputUsername" class="block text-slate-300 mb-2">Username</label>
+                <input type="text" name="username" id="inputUsername" class="w-full rounded-lg bg-[#2A3B47] text-white py-2 px-4 focus:ring-2 focus:ring-amber-400 focus:outline-none" required autofocus>
+            </div>
+            <div>
+                <label for="inputPassword" class="block text-slate-300 mb-2">Password</label>
+                <input type="password" name="password" id="inputPassword" class="w-full rounded-lg bg-[#2A3B47] text-white py-2 px-4 focus:ring-2 focus:ring-amber-400 focus:outline-none" required>
+            </div>
+            <div class="flex justify-end">
+                <button class="bg-amber-400 hover:bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
+                    Sign in
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
