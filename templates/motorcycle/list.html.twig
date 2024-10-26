@@ -5,10 +5,17 @@
 {% block body %}
 <main class="flex flex-col lg:flex-row">
     <div class="px-12 pt-10 w-full">
-        <h1 class="text-4xl font-semibold mb-8">
-            Motorcycles List
-        </h1>
-
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-semibold text-white">
+                Mototrcycle List
+            </h1>            
+            <a 
+                href="{{ path('motorcycle_create') }}" 
+                class="inline-block bg-amber-400 text-white font-semibold py-2 px-4 rounded-lg hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
+            >
+                Add New Motorcycle
+            </a>
+        </div>
         <div class="space-y-5">
             {% for motorcycle in motorcycles %}
                 <div class="bg-[#16202A] rounded-2xl pl-5 py-5 pr-11 flex flex-col min-[1174px]:flex-row min-[1174px]:justify-between">

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicleshop: The Wow !{% endblock %}
+
+{% block body %}
+    <main class="flex flex-col lg:flex-row">
+        {{ include('main/_sidebar.html.twig') }}
+
+        <div class="px-12 pt-2 w-full">
+            <h2 class="text-4xl font-semibold mb-6">The Best Vehicle Shop Ever - Categories:</h2>
+            <div class="space-y-5">
+                {{ include('main/_vehicle_card.html.twig', {
+                    imageSrc: 'images/car.png',
+                    category: 'Cars',
+                    categoryPath: 'car_list',
+                    captain: ' Cars',
+                    class: 'Garden Cars'
+                }) }}
+
+                {{ include('main/_vehicle_card.html.twig', {
+                    imageSrc: 'images/motorcycle.png',
+                    category: 'Motorcycles',
+                    categoryPath: 'motorcycle_list',
+                    captain: 'Motorcycle',
+                    class: 'Garden Motorcycle'
+                }) }}
+
+                {{ include('main/_vehicle_card.html.twig', {
+                    imageSrc: 'images/truck.png',
+                    category: 'Trucks',
+                    categoryPath: 'truck_list',
+                    captain: 'Truck',
+                    class: 'Garden Truck'
+                }) }}
+
+                {{ include('main/_vehicle_card.html.twig', {
+                    imageSrc: 'images/trailer.png',
+                    category: 'Trailers',
+                    categoryPath: 'trailer_list',
+                    captain: 'Trailers',
+                    class: 'Garden Trailers'
+                }) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}
