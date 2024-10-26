@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Create a New Car</h1>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-success">Create</button>
-    {{ form_end(form) }}
+    {% include 'partials/_create_form.html.twig' with {
+        'form': form,
+        'title': 'Create a New Car'
+    } %}
 {% endblock %}
