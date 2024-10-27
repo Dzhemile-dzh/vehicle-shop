@@ -58,6 +58,19 @@
                             <p class="text-slate-400 text-xs">Quantity</p>
                             <p class="text-xl">{{ truck.quantity }}</p>
                         </div>
+                        {% if is_granted('ROLE_BUYER') %}
+                            <div class="pl-8 w-[100px]">
+                                {% if app.user and app.user.isFollowingTruck(truck) %}
+                                    <img class="max-h-[50px] md:max-h-[50px]" src="{{ asset('images/follow-icon.png') }}" alt="Followed">
+                                {% else %}
+                                    <form action="{{ path('truck_follow', { id: truck.id }) }}" method="post">
+                                        <button type="submit" class="bg-teal-600 text-white py-1 px-3 rounded">
+                                            Follow
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

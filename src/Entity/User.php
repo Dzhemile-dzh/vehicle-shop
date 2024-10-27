@@ -6,6 +6,8 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -129,5 +131,127 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->plainPassword = $plainPassword;
 
         return $this;
+    }
+
+    #[ORM\ManyToMany(targetEntity: Car::class, inversedBy: 'followers')]
+    #[ORM\JoinTable(name: 'user_followed_cars')]
+    private Collection $followedCars;
+
+    #[ORM\ManyToMany(targetEntity: Motorcycle::class, inversedBy: 'followers')]
+    #[ORM\JoinTable(name: 'user_followed_motorscycle')]
+    private Collection $followedMotorcycles;
+
+    #[ORM\ManyToMany(targetEntity: Trailer::class, inversedBy: 'followers')]
+    #[ORM\JoinTable(name: 'user_followed_trailer')]
+    private Collection $followedTrailers;
+
+    #[ORM\ManyToMany(targetEntity: Truck::class, inversedBy: 'followers')]
+    #[ORM\JoinTable(name: 'user_followed_truck')]
+    private Collection $followedTrucks;
+
+    public function __construct()
+    {
+        // Other initializations...
+        $this->followedCars = new ArrayCollection();
+        $this->followedMotorcycles = new ArrayCollection();
+        $this->followedTrailers = new ArrayCollection();
+        $this->followedTrucks = new ArrayCollection();
+
+    }
+
+    public function getFollowedCars(): Collection
+    {
+        return $this->followedCars;
+    }
+
+    public function followCar(Car $car): void
+    {
+        if (!$this->followedCars->contains($car)) {
+            $this->followedCars->add($car);
+        }
+    }
+
+    public function unfollowCar(Car $car): void
+    {
+        if ($this->followedCars->contains($car)) {
+            $this->followedCars->removeElement($car);
+        }
+    }
+
+    public function isFollowingCar(Car $car): bool
+    {
+        return $this->followedCars->contains($car);
+    }
+
+    public function getFollowedMotorcycles(): Collection
+    {
+        return $this->followedMotorcycles;
+    }
+
+    public function followMotorcycle(Motorcycle $motorcycle): void
+    {
+        if (!$this->followedMotorcycles->contains($motorcycle)) {
+            $this->followedMotorcycles->add($motorcycle);
+        }
+    }
+
+    public function unfollowMotorcycle(Motorcycle $motorcycle): void
+    {
+        if ($this->followedMotorcycles->contains($motorcycle)) {
+            $this->followedMotorcycles->removeElement($motorcycle);
+        }
+    }
+
+    public function isFollowingMotorcycle(Motorcycle $motorcycle): bool
+    {
+        return $this->followedMotorcycles->contains($motorcycle);
+    }
+    
+    public function getFollowedTrailers(): Collection
+    {
+        return $this->followedTrailers;
+    }
+
+    public function followTrailer(Trailer $trailer): void
+    {
+        if (!$this->followedTrailers->contains($trailer)) {
+            $this->followedTrailers->add($trailer);
+        }
+    }
+
+    public function unfollowTrailer(Trailer $trailer): void
+    {
+        if ($this->followedTrailers->contains($trailer)) {
+            $this->followedTrailers->removeElement($trailer);
+        }
+    }
+
+    public function isFollowingTrailer(Trailer $trailer): bool
+    {
+        return $this->followedTrailers->contains($trailer);
+    }
+
+    public function getFollowedTrucks(): Collection
+    {
+        return $this->followedTrucks;
+    }
+
+    public function followTruck(Truck $truck): void
+    {
+        if (!$this->followedTrucks->contains($truck)) {
+            $this->followedTrucks->add($truck);
+        }
+    }
+
+    public function unfollowTruck(Truck $truck): void
+    {
+        if ($this->followedTrucks->contains($truck)) {
+            $this->followedTrucks->removeElement($truck);
+        }
+    }
+
+    public function isFollowingTruck(Truck $truck): bool
+    {
+        return $this->followedTrucks->contains($truck);
     }
 }

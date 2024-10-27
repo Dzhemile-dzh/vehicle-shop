@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CarRepository;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -67,6 +69,19 @@ class Car
         message: 'Quantity must be an integer.'
     )]
     private ?int $quantity = null;
+
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Favorite::class, orphanRemoval: true)]
+    private Collection $favorites;
+
+    public function __construct()
+    {
+        $this->favorites = new ArrayCollection();
+    }
+
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
 
     public function getId(): ?int
     {

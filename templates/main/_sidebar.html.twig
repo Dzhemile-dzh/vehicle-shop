@@ -12,53 +12,42 @@
                 <p class="uppercase text-xs">Check Your Favs</p>
             </div>
         </div>
-        <div class="flex mt-4 border-b border-white/20 pb-8">
-            <div class="border-r border-white/20 pr-8">
-                <p class="text-slate-400 text-xs"></p>
-                <div class="flex justify-center">
-                    <img class="max-h-[50px] md:max-h-[50px]" src="{{ asset('images/follow-icon.png') }}" alt="trailer image">
-                </div>
+
+        {% set hasVehicles = false %}
+
+        {% for vehicle in followedVehicles %}
+            {% if vehicle.items is not empty %}
+                {% set hasVehicles = true %}
+                {% for item in vehicle.items %}
+                    <a href="{{ path(vehicle.route, { id: item.id }) }}">
+                        <div class="flex mt-4 border-b border-white/20 pb-8 hover:bg-teal-900">
+                            <div class="border-r border-white/20 pr-8">
+                                <div class="flex justify-center">
+                                    <img class="max-h-[50px] md:max-h-[50px]" src="{{ asset('images/follow-icon.png') }}" alt="{{ vehicle.type }} image">
+                                </div>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Category</p>
+                                <p class="text-xl">{{ vehicle.type }}</p>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Brand</p>
+                                <p class="text-xl">{{ item.brand }}</p>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Model</p>
+                                <p class="text-xl">{{ item.model }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if not hasVehicles %}
+            <div class="mt-4">
+                <p class="text-slate-400 text-xs">You have no followed vehicles.</p>
             </div>
-            <div class="pl-8">
-                <p class="text-slate-400 text-xs">Category</p>
-                <p class="text-xl">'dduifdifd'</p>
-            </div>
-            <div class="pl-8">
-                <p class="text-slate-400 text-xs">Brand</p>
-                <p class="text-xl">'dddd'</p>
-            </div>
-        </div>
-        <div class="flex mt-4 border-b border-white/20 pb-8">
-            <div class="border-r border-white/20 pr-8">
-                <p class="text-slate-400 text-xs"></p>
-                <div class="flex justify-center">
-                    <img class="max-h-[50px] md:max-h-[50px]" src="{{ asset('images/follow-icon.png') }}" alt="trailer image">
-                </div>
-            </div>
-            <div class="pl-8">
-                <p class="text-slate-400 text-xs">Category</p>
-                <p class="text-xl">'dduifdifd'</p>
-            </div>
-            <div class="pl-8">
-                <p class="text-slate-400 text-xs">Brand</p>
-                <p class="text-xl">'dddd'</p>
-            </div>
-        </div>
-        <div class="flex mt-4 border-b border-white/20 pb-8">
-            <div class="border-r border-white/20 pr-8">
-                <p class="text-slate-400 text-xs"></p>
-                <div class="flex justify-center">
-                    <img class="max-h-[50px] md:max-h-[50px]" src="{{ asset('images/follow-icon.png') }}" alt="trailer image">
-                </div>
-            </div>
-            <div class="pl-8">
-                <p class="text-slate-400 text-xs">Category</p>
-                <p class="text-xl">'dduifdifd'</p>
-            </div>
-            <div class="pl-8">
-                <p class="text-slate-400 text-xs">Brand</p>
-                <p class="text-xl">'dddd'</p>
-            </div>
-        </div>
+        {% endif %}
     </div>
 </aside>

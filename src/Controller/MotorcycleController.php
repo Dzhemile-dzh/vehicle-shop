@@ -6,6 +6,7 @@ use App\Entity\Motorcycle;
 use App\Form\MotorcycleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,5 +58,37 @@ class MotorcycleController extends AbstractController
         return $this->render('motorcycle/details.html.twig', [
             'motorcycle' => $motorcycle,
         ]);
+    }
+
+    #[Route('/motorcycle/{id}/follow', name: 'motorcycle_follow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function follow(Motorcycle $motorcycle, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user->isFollowingMotorcycle($motorcycle)) {
+            $user->followMotorcycle($motorcycle);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('motorcycle_list');
+    }
+
+    #[Route('/motorcycle/{id}/unfollow', name: 'motorcycle_unfollow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function unfollow(Motorcycle $motorcycle, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user->isFollowingMotorcycle($motorcycle)) {
+            $user->unfollowMotorcycle($motorcycle);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('motorcycle_list');
     }
 }

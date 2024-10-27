@@ -7,6 +7,7 @@ use App\Form\CarType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,5 +58,36 @@ class CarController extends AbstractController
         return $this->render('car/details.html.twig', [
             'car' => $car,
         ]);
+    }
+    #[Route('/car/{id}/follow', name: 'car_follow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function follow(Car $car, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user->isFollowingCar($car)) {
+            $user->followCar($car);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('car_list');
+    }
+
+    #[Route('/car/{id}/unfollow', name: 'car_unfollow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function unfollow(Car $car, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user->isFollowingCar($car)) {
+            $user->unfollowCar($car);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('car_list');
     }
 }

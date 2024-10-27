@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Trailer;
 use App\Form\TrailerType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,5 +58,37 @@ class TrailerController extends AbstractController
         return $this->render('trailer/details.html.twig', [
             'trailer' => $trailer,
         ]);
+    }
+    
+    #[Route('/trailer/{id}/follow', name: 'trailer_follow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function follow(Trailer $trailer, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user->isFollowingTrailer($trailer)) {
+            $user->followTrailer($trailer);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('trailer_list');
+    }
+
+    #[Route('/trailer/{id}/unfollow', name: 'trailer_unfollow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function unfollow(Trailer $trailer, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user->isFollowingTrailer($trailer)) {
+            $user->unfollowTrailer($trailer);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('trailer_list');
     }
 }

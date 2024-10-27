@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Truck;
 use App\Form\TruckType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,5 +58,37 @@ class TruckController extends AbstractController
         return $this->render('truck/details.html.twig', [
             'truck' => $truck,
         ]);
+    }
+        
+    #[Route('/truck/{id}/follow', name: 'truck_follow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function follow(Truck $truck, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user->isFollowingTruck($truck)) {
+            $user->followTruck($truck);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('truck_list');
+    }
+
+    #[Route('/truck/{id}/unfollow', name: 'truck_unfollow', methods: ['POST'])]
+    #[IsGranted('ROLE_BUYER')]
+    public function unfollow(Truck $truck, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user->isFollowingTruck($truck)) {
+            $user->unfollowTruck($truck);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('truck_list');
     }
 }

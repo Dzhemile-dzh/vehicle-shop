@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\TrailerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TrailerRepository::class)]
@@ -54,6 +56,19 @@ class Trailer
         message: 'Quantity must be an integer.'
     )]
     private ?int $quantity = null;
+
+    #[ORM\OneToMany(mappedBy: 'motorcycle', targetEntity: Favorite::class, orphanRemoval: true)]
+    private Collection $favorites;
+
+    public function __construct()
+    {
+        $this->favorites = new ArrayCollection();
+    }
+
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
 
     public function getId(): ?int
     {
