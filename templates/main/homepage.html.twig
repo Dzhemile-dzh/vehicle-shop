@@ -4,8 +4,9 @@
 
 {% block body %}
     <main class="flex flex-col lg:flex-row">
-        {{ include('main/_sidebar.html.twig') }}
-
+        {% if is_granted('ROLE_BUYER') %}
+            {{ include('main/_sidebar.html.twig') }}
+        {% endif %}
         <div class="px-12 pt-2 w-full">
             <h2 class="text-4xl font-semibold mb-6">The Best Vehicle Shop Ever - Categories:</h2>
             <div class="space-y-5">

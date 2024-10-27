@@ -6,6 +6,7 @@ use App\Entity\Motorcycle;
 use App\Form\MotorcycleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MotorcycleController extends AbstractController
 {
     #[Route('/motorcycle/new', name: 'motorcycle_create')]
+    #[IsGranted('ROLE_MERCHANT')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $motorcycle = new Motorcycle();
