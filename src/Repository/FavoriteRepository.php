@@ -15,5 +15,4 @@ class FavoriteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Favorite::class);
     }
-
 }

@@ -34,6 +34,7 @@ class Favorite
     public function setCar(?Car $car): static
     {
         $this->car = $car;
+
         return $this;
     }
 
@@ -45,6 +46,7 @@ class Favorite
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
         return $this;
     }
 }

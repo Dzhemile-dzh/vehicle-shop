@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Entity\Trailer;
 use App\Form\TrailerType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TrailerController extends AbstractController
 {
@@ -59,7 +59,7 @@ class TrailerController extends AbstractController
             'trailer' => $trailer,
         ]);
     }
-    
+
     #[Route('/trailer/{id}/follow', name: 'trailer_follow', methods: ['POST'])]
     #[IsGranted('ROLE_BUYER')]
     public function follow(Trailer $trailer, EntityManagerInterface $em): RedirectResponse

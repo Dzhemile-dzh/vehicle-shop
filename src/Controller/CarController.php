@@ -6,11 +6,11 @@ use App\Entity\Car;
 use App\Form\CarType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CarController extends AbstractController
 {
@@ -59,6 +59,7 @@ class CarController extends AbstractController
             'car' => $car,
         ]);
     }
+
     #[Route('/car/{id}/follow', name: 'car_follow', methods: ['POST'])]
     #[IsGranted('ROLE_BUYER')]
     public function follow(Car $car, EntityManagerInterface $em): RedirectResponse

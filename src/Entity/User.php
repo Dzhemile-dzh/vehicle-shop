@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -158,7 +158,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->followedMotorcycles = new ArrayCollection();
         $this->followedTrailers = new ArrayCollection();
         $this->followedTrucks = new ArrayCollection();
-
     }
 
     public function getFollowedCars(): Collection
@@ -208,7 +207,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->followedMotorcycles->contains($motorcycle);
     }
-    
+
     public function getFollowedTrailers(): Collection
     {
         return $this->followedTrailers;

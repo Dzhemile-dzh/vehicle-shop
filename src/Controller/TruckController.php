@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Entity\Truck;
 use App\Form\TruckType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TruckController extends AbstractController
 {
@@ -59,7 +59,7 @@ class TruckController extends AbstractController
             'truck' => $truck,
         ]);
     }
-        
+
     #[Route('/truck/{id}/follow', name: 'truck_follow', methods: ['POST'])]
     #[IsGranted('ROLE_BUYER')]
     public function follow(Truck $truck, EntityManagerInterface $em): RedirectResponse
