@@ -39,6 +39,7 @@ final class UserFactory extends PersistentProxyObjectFactory
         return [
             'username' => self::faker()->username(),
             'firstName' => self::faker()->firstName(),
+            'email' => self::faker()->email(),
             'plainPassword' => 'tada',
         ];
     }

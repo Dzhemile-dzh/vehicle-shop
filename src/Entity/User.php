@@ -151,6 +151,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable(name: 'user_followed_truck')]
     private Collection $followedTrucks;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function __construct()
     {
         // Other initializations...
@@ -254,5 +257,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isFollowingTruck(Truck $truck): bool
     {
         return $this->followedTrucks->contains($truck);
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
     }
 }

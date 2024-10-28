@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,6 +40,18 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 2,
                         'minMessage' => 'Your first name should be at least {{ limit }} characters',
+                        'max' => 180,
+                    ]),
+                ],
+            ])
+            ->add('email', EmailType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a email',
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'minMessage' => 'Your email should be at least {{ limit }} characters',
                         'max' => 180,
                     ]),
                 ],
