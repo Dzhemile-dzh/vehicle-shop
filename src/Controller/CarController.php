@@ -31,7 +31,7 @@ class CarController extends BaseVehicleController
     public function details(int $id, EntityManagerInterface $em): Response
     {
         return $this->handleDetails($id, $em, Car::class, 'vehicle/details.html.twig', [
-            'vehicleType' => 'car', 
+            'vehicleType' => 'car',
         ]);
     }
 

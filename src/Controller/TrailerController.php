@@ -31,7 +31,7 @@ class TrailerController extends BaseVehicleController
     public function details(int $id, EntityManagerInterface $em): Response
     {
         return $this->handleDetails($id, $em, Trailer::class, 'vehicle/details.html.twig', [
-            'vehicleType' => 'trailer', 
+            'vehicleType' => 'trailer',
         ]);
     }
 

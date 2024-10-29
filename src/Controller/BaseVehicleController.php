@@ -58,6 +58,7 @@ abstract class BaseVehicleController extends AbstractController
         $params = array_merge($additionalParams, [
             'vehicle' => $entity,
         ]);
+
         return $this->render($template, $params);
     }
 
