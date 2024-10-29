@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\MappedSuperclass]
@@ -45,6 +45,7 @@ abstract class BaseVehicle
     public function setBrand(string $brand): static
     {
         $this->brand = $brand;
+
         return $this;
     }
 
@@ -56,6 +57,7 @@ abstract class BaseVehicle
     public function setModel(string $model): static
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -67,6 +69,7 @@ abstract class BaseVehicle
     public function setPrice(string $price): static
     {
         $this->price = $price;
+
         return $this;
     }
 
@@ -78,6 +81,7 @@ abstract class BaseVehicle
     public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 }

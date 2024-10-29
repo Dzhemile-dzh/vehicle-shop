@@ -41,7 +41,6 @@ class Car extends BaseVehicle
     )]
     private ?string $car_category = null;
 
-
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Favorite::class, orphanRemoval: true)]
     private Collection $favorites;
 

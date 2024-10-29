@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Entity\Motorcycle;
-use App\Entity\Truck;
 use App\Entity\Trailer;
+use App\Entity\Truck;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,7 +20,7 @@ abstract class BaseVehicleController extends AbstractController
         string $entityClass,
         string $formClass,
         string $routeName,
-        string $template
+        string $template,
     ): Response {
         $entity = new $entityClass();
         $form = $this->createForm($formClass, $entity);
@@ -64,9 +64,9 @@ abstract class BaseVehicleController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-    
+
         $entityClass = get_class($entity);
-    
+
         switch ($entityClass) {
             case Car::class:
                 $isFollowingMethod = 'isFollowingCar';
@@ -87,15 +87,16 @@ abstract class BaseVehicleController extends AbstractController
             default:
                 throw new \LogicException('Unknown entity type for following.');
         }
-    
+
         if (!$user->$isFollowingMethod($entity)) {
             $user->$followMethod($entity);
             $em->persist($user);
             $em->flush();
         }
-    
+
         return $this->redirectToRoute($routeName);
     }
+
     protected function handleUnfollow(Request $request, EntityManagerInterface $em, $entity, string $routeName): RedirectResponse
     {
         /** @var User $user */
