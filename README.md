@@ -4,7 +4,7 @@
 The **Vehicle Shop Project** is a web application that allows users to explore different types of vehicles including **cars, motorcycles, trucks, and trailers**. The project supports two user roles: **Merchant** and **Buyer**, each with different functionalities. The application also includes features for user registration, authentication, password reset, and Docker-based MySQL database setup.
 
 ## Features
-
+ 
 ### User Roles:
 
 - **Role: Buyer**
