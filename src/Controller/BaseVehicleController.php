@@ -102,10 +102,31 @@ abstract class BaseVehicleController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        if ($user->isFollowing($entity)) {
-            $user->unfollow($entity);
-            $em->persist($user);
-            $em->flush();
+        if ($user) {
+            $entityClass = get_class($entity);
+
+            switch ($entityClass) {
+                case Car::class:
+                    $unfollowMethod = 'unfollowCar';
+                    break;
+                case Motorcycle::class:
+                    $unfollowMethod = 'unfollowMotorcycle';
+                    break;
+                case Trailer::class:
+                    $unfollowMethod = 'unfollowTrailer';
+                    break;
+                case Truck::class:
+                    $unfollowMethod = 'unfollowTruck';
+                    break;
+                default:
+                    throw new \LogicException('Unknown entity type for unfollowing.');
+            }
+
+            if ($user->{'isFollowing'.(new \ReflectionClass($entity))->getShortName()}($entity)) {
+                $user->$unfollowMethod($entity);
+                $em->persist($user);
+                $em->flush();
+            }
         }
 
         return $this->redirectToRoute($routeName);

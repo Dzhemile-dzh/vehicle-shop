@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicleshop: The Wow !{% endblock %}
+
+{% block body %}
+    <main class="flex flex-col lg:flex-row">
+      
+<div class="px-12 pt-2 w-full">
+    <h2 class="text-[32px] font-semibold">Followed Vehicles</h2>
+    <div>
+        {% set hasVehicles = false %}
+
+        {% for vehicle in followedVehicles %}
+            {% if vehicle.items is not empty %}
+                {% set hasVehicles = true %}
+                {% for item in vehicle.items %}
+                    <a href="{{ path(vehicle.route, { id: item.id }) }}">
+                        <div class="flex mt-4 border-b border-white/20 pb-8 hover:bg-teal-900">
+                            <div class="border-r border-white/20 pr-8">
+                                <div class="flex justify-center">
+                                    <img class="max-h-[50px] md:max-h-[50px]" src="{{ asset('images/follow-icon.png') }}" alt="{{ vehicle.type }} image">
+                                </div>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Category</p>
+                                <p class="text-xl">{{ vehicle.type }}</p>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Brand</p>
+                                <p class="text-xl">{{ item.brand }}</p>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Model</p>
+                                <p class="text-xl">{{ item.model }}</p>
+                            </div>
+                            <div class="pl-8">
+                                <p class="text-slate-400 text-xs">Price</p>
+                                <p class="text-xl">{{ item.price }}</p>
+                            </div>
+                            <div class="pl-8 flex-end">
+                                <form action="{{ path(vehicle.type|lower ~ '_unfollow', { id: item.id }) }}" method="post" style="display: inline;">
+                                    <button type="submit" class="bg-amber-400 hover:bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg transition duration-200"><p class="text-xl">Unfollow</p></button>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if not hasVehicles %}
+            <div class="mt-4">
+                <p class="text-slate-400 text-xs">You have no followed vehicles.</p>
+            </div>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock %}
