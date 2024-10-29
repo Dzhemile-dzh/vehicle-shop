@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ trailer.brand }} - {{ trailer.model }}{% endblock %}
+{% block title %}{{ vehicle.brand }} - {{ vehicle.model }}{% endblock %}
 
 {% block body %}
 <div class="my-4 px-8">
@@ -19,20 +19,20 @@
         <div class="mt-8 max-w-xl mx-auto">
             <div class="px-8 pt-8">
                 <h1 class="text-[32px] font-semibold border-b border-white/10 pb-5 mb-5">
-                    {{ trailer.brand }} - {{ trailer.model }}
+                    {{ vehicle.brand }} - {{ vehicle.model }}
                 </h1>
                 
                 <h4 class="text-xs text-slate-300 font-semibold mt-2 uppercase">Load Capacity</h4>
-                <p class="text-[22px] font-semibold">{{ trailer.loadKapacityKg }} KG</p>
+                <p class="text-[22px] font-semibold">{{ vehicle.loadKapacityKg }} KG</p>
 
                 <h4 class="text-xs text-slate-300 font-semibold mt-2 uppercase">Axles Number</h4>
-                <p class="text-[22px] font-semibold">{{ trailer.axlesNumber }}</p>
+                <p class="text-[22px] font-semibold">{{ vehicle.axlesNumber }}</p>
 
                 <h4 class="text-xs text-slate-300 font-semibold mt-2 uppercase">Price</h4>
-                <p class="text-[22px] font-semibold">${{ trailer.price }}</p>
+                <p class="text-[22px] font-semibold">${{ vehicle.price }}</p>
 
                 <h4 class="text-xs text-slate-300 font-semibold mt-2 uppercase">Quantity</h4>
-                <p class="text-[22px] font-semibold">{{ trailer.quantity }}</p>
+                <p class="text-[22px] font-semibold">{{ vehicle.quantity }}</p>
             </div>
         </div>
     </div>
