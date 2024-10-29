@@ -30,7 +30,9 @@ class TruckController extends BaseVehicleController
     #[Route('/truck/{id}', name: 'truck_details')]
     public function details(int $id, EntityManagerInterface $em): Response
     {
-        return $this->handleDetails($id, $em, Truck::class, 'truck/details.html.twig');
+        return $this->handleDetails($id, $em, Truck::class, 'vehicle/details.html.twig', [
+            'vehicleType' => 'truck', 
+        ]);
     }
 
     #[Route('/truck/{id}/follow', name: 'truck_follow', methods: ['POST'])]

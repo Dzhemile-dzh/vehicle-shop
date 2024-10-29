@@ -47,7 +47,7 @@ abstract class BaseVehicleController extends AbstractController
         ]);
     }
 
-    protected function handleDetails(int $id, EntityManagerInterface $em, string $entityClass, string $template): Response
+    protected function handleDetails(int $id, EntityManagerInterface $em, string $entityClass, string $template, array $additionalParams = []): Response
     {
         $entity = $em->getRepository($entityClass)->find($id);
 
@@ -55,9 +55,10 @@ abstract class BaseVehicleController extends AbstractController
             throw $this->createNotFoundException('The vehicle does not exist');
         }
 
-        return $this->render($template, [
+        $params = array_merge($additionalParams, [
             'vehicle' => $entity,
         ]);
+        return $this->render($template, $params);
     }
 
     protected function handleFollow(Request $request, EntityManagerInterface $em, $entity, string $routeName): RedirectResponse
