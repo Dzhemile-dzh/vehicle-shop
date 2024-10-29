@@ -6,7 +6,7 @@ The **Vehicle Shop Project** is a web application that allows users to explore d
 ## Features
  
 ### User Roles:
-
+ 
 - **Role: Buyer**
   - Can view all vehicle types and detailed information for each.
   - Has an option to **follow (favorite)** vehicles and **unfollow** previously followed vehicles.
