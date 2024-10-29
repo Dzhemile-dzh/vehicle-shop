@@ -28,7 +28,7 @@ The application manages and displays different types of vehicles including **Car
 
 ### Password Reset:
 
-The application uses the **Symfony Reset Password Bundle** to manage password resets. An email with a password reset link and token is sent to the user. The link is valid for **1 day**.
+The application uses the **Symfony Reset Password Bundle** to manage password resets. An email with a password reset link and token is sent to the user. The link is valid for **1 hour**.
 
 #### Mailer Configuration:
 ```makefile
@@ -187,3 +187,73 @@ Here is the updated `README.md` with the requested changes:
 ```
 
 This will set up the MySQL database within the container. Be sure to configure the database connection in your `.env` file to point to the Docker container.
+
+### Project Interface 
+## Login
+![login](https://github.com/user-attachments/assets/84f5c484-fdba-4e3c-9652-f781126cd0f0)
+
+## Register
+![register](https://github.com/user-attachments/assets/dc4cdf0e-f8a4-4825-81bb-1d0acca26f03)
+
+## Forgot Password
+![forgot-pass](https://github.com/user-attachments/assets/701dcf9b-53b4-4866-9267-9178090973ac)
+
+![forgot-pass-email-sent](https://github.com/user-attachments/assets/aad68ed5-cef2-4c3b-ac3f-6f9430c8aee6)
+
+![forgot-pass-email](https://github.com/user-attachments/assets/f5f9b980-7b6a-4fc2-a99c-be0366d9f820)
+
+![forgot-pass-reset'](https://github.com/user-attachments/assets/e42df3a2-b3e2-4512-b029-979504fe343c)
+
+## Role Buyer
+# Homepage
+![homepage](https://github.com/user-attachments/assets/4a956b22-f201-49cd-a503-4d1d5e3b5d58)
+
+# Followed
+![followed-page](https://github.com/user-attachments/assets/1deff5f4-7b25-49f5-ad46-e1ef2738e4b1)
+
+# All Cars
+![all-cars](https://github.com/user-attachments/assets/ef30c5c5-2600-4350-b7cc-1268d5d72911)
+
+# All Motorcycles 
+![all-mototrcycles](https://github.com/user-attachments/assets/669c0f94-75b4-4541-9c8d-512acabffc8d)
+
+# All Trailers 
+![all-trailers](https://github.com/user-attachments/assets/483b7423-a182-48fb-98b5-58e18050859f)
+
+# All Trucks
+![all-trucks](https://github.com/user-attachments/assets/d41bf080-2c8b-46f3-abbe-8c759400f30e)
+
+# Details page 
+![car-detail](https://github.com/user-attachments/assets/81bc384c-bd77-42e6-a6ed-e1c3492f25e0)
+![motorcycle-detail](https://github.com/user-attachments/assets/5fefef01-f496-45ce-bc06-8a9ade5b1c93)
+![trailer-detail](https://github.com/user-attachments/assets/15e3494f-78bf-4021-9501-dbd0c2550388)
+![truck-detail](https://github.com/user-attachments/assets/0d7bd53e-f97a-4d3d-a456-eeee69896b08)
+
+## Role Merchant
+# Homepage
+![homepage](https://github.com/user-attachments/assets/4fc55a72-ef4a-4bf0-bd8e-aafdd8c251f4)
+
+# All Cars
+![cars-list](https://github.com/user-attachments/assets/e6c872f1-999e-436d-bdb7-50f04fd3600e)
+
+# All Motorcycles 
+![mototrcycle-list](https://github.com/user-attachments/assets/9d801486-d034-4f82-84b5-346591f5342e)
+
+# All Trailers 
+![trailers-list](https://github.com/user-attachments/assets/e52f334e-5003-433d-beb2-32f1859aedfd)
+
+# All Trucks
+![trucks-list](https://github.com/user-attachments/assets/86e8f897-a95a-4d2c-9f5b-75e5116f04a1)
+
+# Add new pages
+![car-add](https://github.com/user-attachments/assets/0aa888c3-7602-443a-8481-352128c06f51)
+![motorcycle-add](https://github.com/user-attachments/assets/a4b10c4a-cf72-4787-8bd4-fc6c9ddd7b86)
+![trailer-add](https://github.com/user-attachments/assets/130150e7-70d6-467b-9efe-22e792af2ae0)
+![truck-add](https://github.com/user-attachments/assets/4d4df96d-d25a-4f66-84f1-29640fe7a5be)
+
+
+# Details page 
+![car-detail](https://github.com/user-attachments/assets/81bc384c-bd77-42e6-a6ed-e1c3492f25e0)
+![motorcycle-detail](https://github.com/user-attachments/assets/5fefef01-f496-45ce-bc06-8a9ade5b1c93)
+![trailer-detail](https://github.com/user-attachments/assets/15e3494f-78bf-4021-9501-dbd0c2550388)
+![truck-detail](https://github.com/user-attachments/assets/0d7bd53e-f97a-4d3d-a456-eeee69896b08)
