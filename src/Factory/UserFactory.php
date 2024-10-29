@@ -37,11 +37,33 @@ final class UserFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'username' => self::faker()->username(),
-            'firstName' => self::faker()->firstName(),
-            'email' => self::faker()->email(),
-            'plainPassword' => 'tada',
+            'username' => self::faker()->unique()->userName(),
+            'firstname' => self::faker()->firstName(),
+            'email' => self::faker()->unique()->email(),
+            'roles' => ['ROLE_USER'], 
+            'plainPassword' => 'tada', // Default password
         ];
+    }
+
+    public static function createSpecificUsers(): void
+    {
+        // Create a buyer
+        self::createOne([
+            'username' => 'buyer',
+            'firstname' => 'Neivan',
+            'email' => self::faker()->unique()->email(),
+            'roles' => ['ROLE_BUYER'],
+            'plainPassword' => 'tada',
+        ]);
+
+        // Create a merchant
+        self::createOne([
+            'username' => 'merchant',
+            'firstname' => 'Nestoyan',
+            'email' => self::faker()->unique()->email(),
+            'roles' => ['ROLE_MERCHANT'],
+            'plainPassword' => 'tada',
+        ]);
     }
 
     /**
