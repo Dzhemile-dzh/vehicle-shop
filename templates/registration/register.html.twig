@@ -8,8 +8,10 @@
         {{ form_start(registrationForm, {'attr': {'class': 'space-y-6'}}) }}
             <h1 class="text-2xl font-semibold text-center text-white mb-4">Create an account</h1>
 
-            {{ form_errors(registrationForm) }}
-
+            <!-- Global form errors -->
+            <div class="bg-rose-400">
+                {{ form_errors(registrationForm) }}
+            </div>
             <div>
                 <label for="registrationForm_username" class="block text-slate-300 mb-2">Username</label>
                 {{ form_widget(registrationForm.username, {
@@ -17,6 +19,9 @@
                         'class': 'w-full rounded-lg bg-[#2A3B47] text-white py-2 px-4 focus:ring-2 focus:ring-amber-400 focus:outline-none'
                     }
                 }) }}
+                <div class="bg-rose-400">
+                    {{ form_errors(registrationForm.username) }}
+                </div>
             </div>
 
             <div>
@@ -26,6 +31,9 @@
                         'class': 'w-full rounded-lg bg-[#2A3B47] text-white py-2 px-4 focus:ring-2 focus:ring-amber-400 focus:outline-none'
                     }
                 }) }}
+                <div class="bg-rose-400">
+                    {{ form_errors(registrationForm.first_name) }}
+                </div>
             </div>
 
             <div>
@@ -35,6 +43,10 @@
                         'class': 'w-full rounded-lg bg-[#2A3B47] text-white py-2 px-4 focus:ring-2 focus:ring-amber-400 focus:outline-none'
                     }
                 }) }}
+
+                <div class="bg-rose-400">
+                    {{ form_errors(registrationForm.email) }}
+                </div>
             </div>
 
             <div>
@@ -44,6 +56,9 @@
                         'class': 'w-full rounded-lg bg-[#2A3B47] text-white py-2 px-4 focus:ring-2 focus:ring-amber-400 focus:outline-none'
                     }
                 }) }}
+                <div class="bg-rose-400">
+                    {{ form_errors(registrationForm.plainPassword.first) }}
+                </div>
             </div>
 
             <div>
@@ -54,7 +69,7 @@
                     }
                 }) }}
                 <div class="bg-rose-400">
-                    {{ form_errors(registrationForm.plainPassword.first) }}
+                    {{ form_errors(registrationForm.plainPassword.second) }}
                 </div>
             </div>
 
@@ -65,8 +80,8 @@
                     }
                 }) }}
                 <label for="registrationForm_agreeTerms" class="text-slate-300 text-sm">I agree to the terms and conditions</label>
-                <div class="bg-rose-400">
-                    {{ form_errors(registrationForm.plainPassword.second) }}
+                 <div class="bg-rose-400">
+                    {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
             </div>
 
