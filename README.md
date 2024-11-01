@@ -57,29 +57,19 @@ cd vehicle-shop
 composer install
 ```
 
-#### 3. Install Node.js dependencies :
-
-```bash
-npm install
-```
-
-#### 4. Configure environment variables:
-
-Copy the `.env.example` file to `.env` and configure the required variables such as database connection, mailer settings, etc.
-
-#### 5. Setup Docker containers:
+#### 3. Setup Docker containers:
 
 ```bash
 docker-compose up -d
 ```
 
-#### 6. Run migrations:
+#### 4. Run migrations:
 
 ```bash
 php bin/console doctrine:migrations:migrate
 ```
 
-#### 7. Load fixtures:
+#### 5. Load fixtures:
 
 ```bash
 php bin/console doctrine:fixtures:load
@@ -187,6 +177,11 @@ Here is the updated `README.md` with the requested changes:
 ```
 
 This will set up the MySQL database within the container. Be sure to configure the database connection in your `.env` file to point to the Docker container.
+
+### Conclusions
+Integrating the backend Symfony logic with the React frontend presented some challenges, particularly after setting up Webpack, where React components weren’t rendering as expected. To keep the project moving smoothly, I opted to create visualizations using Twig templates, ensuring a functional project setup. The React code is included in assets/src for reference, and changes the API endpoints to return data in JSON format, compatible with React’s requirements.
+
+Thank you for exploring this project!
 
 ### Project Interface 
 ## Login

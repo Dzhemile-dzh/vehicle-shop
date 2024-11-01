@@ -13,7 +13,7 @@ import CarForm from './Form/CarForm';
 import MotorcycleForm from './Form/MotorcycleForm';
 import TruckForm from './Form/TruckForm';
 import TrailerForm from './Form/TrailerForm';
-
+import ProductDetail from './Product/ProductDetails';
 
 const App = () => (
   <Router>
@@ -35,6 +35,7 @@ const App = () => (
           <Route path="/create-motorcycles" element={<MotorcycleForm />} />
           <Route path="/create-trucks" element={<TruckForm />} />
           <Route path="/create-trailers" element={<TrailerForm />} />
+          <Route path="/:vehicleType/:id" element={<ProductDetail />} />
         </Routes>
         <Footer />
       </div>
